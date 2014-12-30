@@ -70,6 +70,8 @@
 #include "../protocols/survey/xsurveyor.h"
 #include "../protocols/bus/bus.h"
 #include "../protocols/bus/xbus.h"
+#include "../protocols/hub/hub.h"
+#include "../protocols/hub/xhub.h"
 
 #include "../pubsub.h"
 #include "../pipeline.h"
@@ -279,6 +281,8 @@ static void nn_global_init (void)
     nn_global_add_socktype (nn_xsurveyor_socktype);
     nn_global_add_socktype (nn_bus_socktype);
     nn_global_add_socktype (nn_xbus_socktype);
+    nn_global_add_socktype (nn_hub_socktype);
+    nn_global_add_socktype (nn_xhub_socktype);
 
     /*  Start the worker threads. */
     nn_pool_init (&self.pool);
@@ -479,7 +483,7 @@ struct nn_cmsghdr *nn_cmsg_nxthdr_ (const struct nn_msghdr *mhdr,
     if (headsz + NN_CMSG_SPACE (0) > sz ||
           headsz + NN_CMSG_ALIGN_ (next->cmsg_len) > sz)
         return NULL;
-    
+
     /*  Success. */
     return next;
 }

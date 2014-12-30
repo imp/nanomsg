@@ -33,6 +33,7 @@
 #include "../pipeline.h"
 #include "../survey.h"
 #include "../bus.h"
+#include "../hub.h"
 
 #include <string.h>
 
